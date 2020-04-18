@@ -48,6 +48,7 @@ class AddPhoto extends Component {
                             <Grid container direction="column" spacing={2}>
                                 <Grid item xs>
                                     <FormElement
+                                        required
                                         propertyName="title"
                                         type="text"
                                         title="Title"
@@ -60,6 +61,7 @@ class AddPhoto extends Component {
                                 </Grid>
                                 <Grid item xs>
                                     <FormElement
+                                        required
                                         propertyName="image"
                                         title="Image"
                                         type="file"

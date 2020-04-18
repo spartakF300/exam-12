@@ -11,10 +11,10 @@ router.get('/', async (req, res) => {
         params = {user: req.query.id};
 
     }
-    try{
+    try {
         const items = await Photo.find(params).populate('user');
-       return  res.send(items);
-    }catch (e) {
+        return res.send(items);
+    } catch (e) {
         return res.status(500).send(e);
     }
 
@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
     try {
         const items = await Photo.findById(req.params.id);
         res.send(items);
-    } catch(e) {
+    } catch (e) {
         res.sendStatus(500);
     }
 });
@@ -36,7 +36,7 @@ router.post('/', [auth, upload.single('image')], async (req, res) => {
     if (req.file) {
         photoData.image = req.file.filename;
     }
-   
+
     try {
         const photo = new Photo(photoData);
 
@@ -52,11 +52,11 @@ router.post('/', [auth, upload.single('image')], async (req, res) => {
 
 router.delete('/', auth, async (req, res) => {
     try {
-        await Photo.deleteOne({_id:req.query.id});
-        return res.status(200).send({message:'delete'});
+        await Photo.deleteOne({_id: req.query.id});
+        return res.status(200).send({message: 'delete'});
 
     } catch (error) {
-        return res.status(500).send({message:'error'});
+        return res.status(500).send({message: 'error'});
     }
 });
 module.exports = router;
